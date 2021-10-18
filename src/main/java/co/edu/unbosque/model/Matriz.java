@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Matriz {
-	private	int[][] m1; 
-	private int[][] m2;
-	private int[][] mR;
+	private	int[][] m1; //Matriz A
+	private int[][] m2; //Matriz B
+	private int[][] mR; //Matriz A * B
 }

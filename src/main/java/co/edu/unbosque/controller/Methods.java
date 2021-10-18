@@ -12,19 +12,24 @@ public class Methods {
 
     }
 
+    /**
+     * Método para generar numeros aleatorios sin repetir ordenados
+     * @param size tamanio array
+     * @return array con numeros aleatorios sin repetir
+     */
     public static int[] numerosAleatorios(int size) {
         int pos;
 
         Stack<Integer> p = new Stack<Integer>();
         for (int i = 0; i < size; i++) {
-            pos = (int) Math.floor(Math.random() * (size * 2));
+            pos = (int) Math.floor(Math.random() * (size * 2));//Random
             while (p.contains(pos)) {
-                pos = (int) Math.floor(Math.random() * (size * 2));
+                pos = (int) Math.floor(Math.random() * (size * 2));//Random
             }
             p.push(pos);
         }
 
-        Collections.sort(p);
+        Collections.sort(p);//Ordenar
 
         int[] a = new int[size];
 
@@ -35,10 +40,17 @@ public class Methods {
         return a;
     }
 
+    /**
+     * Método para generar un numero aleatorio
+     * @return Numero
+     */
     public static int numeroAleatorio() {
         return (int) Math.floor(Math.random() * 50);
     }
 
+    /**
+     * Método para escribir solo numeros en los campos de texto
+     */
     public static EventHandler<KeyEvent> handlerNumbers = new EventHandler<KeyEvent>() {
         private boolean willConsume = false;
 

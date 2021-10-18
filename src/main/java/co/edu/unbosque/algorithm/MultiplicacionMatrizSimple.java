@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -32,13 +31,13 @@ public class MultiplicacionMatrizSimple {
     }
 
     @FXML
-    public void matrizSimple(Matriz matriz, int f1, int c1, int f2, int c2, int[][] m1, int[][] m2, int[][] mR) {
-        List<Text> listText = new ArrayList<>();
+    public void matrizSimple(Matriz matriz, int f1, int c1, int f2, int c2, int[][] m1, int[][] m2, int[][] mR) throws NumberFormatException {
+        List<String> listText = new ArrayList<>();
 
         GridPane gridPane1 = ObjectView.gridPane();
         for (int i = 0; i < f1; i++) {
             for (int j = 0; j < c1; j++) {
-                gridPane1.add(ObjectView.text(matriz.getM1()[i][j]), i, j);
+                gridPane1.add(ObjectView.text(matriz.getM1()[i][j]), j, i);
             }
         }
 
@@ -48,7 +47,7 @@ public class MultiplicacionMatrizSimple {
         GridPane gridPane2 = ObjectView.gridPane();
         for (int i = 0; i < f2; i++) {
             for (int j = 0; j < c2; j++) {
-                gridPane2.add(ObjectView.text(matriz.getM2()[i][j]), i, j);
+                gridPane2.add(ObjectView.text(matriz.getM2()[i][j]), j, i);
             }
         }
 
@@ -60,34 +59,47 @@ public class MultiplicacionMatrizSimple {
         for (int i = 0; i < f1; i++) {
             for (int j = 0; j < c2; j++) {
                 for (int h = 0; h < c1; h++) {
-                    String color = "#118AB2";
+                    mR[i][j] += m1[i][h] * m2[h][j];
 
-                    if (h + 1 == c1) {
-                        color = "#06D6A0";
-                    }
-
-                    listText.add(ObjectView.text("#D3D3D3",
-                            m1[i][h] + " * " + m2[h][j] + " = " + (m1[i][h] * m2[h][j]),
-                            "18px"));
-
-
-                    listText.add(ObjectView.text(color,
-                            mR[i][j] + " + " + (m1[i][h] * m2[h][j]) + " = " + (mR[i][j] += m1[i][h] * m2[h][j]),
-                            "18px"));
+                    listText.add(
+                            m1[i][h] + " * " + m2[h][j]);
                 }
+
                 matriz.setMR(mR);
-                gridPane3.add(ObjectView.text(matriz.getMR()[i][j]), i, j);
+                gridPane3.add(ObjectView.text(matriz.getMR()[i][j]), j, i);
             }
         }
+
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < f1; i++) {
+            for (int j = 0; j < c2; j++) {
+                result.add(String.valueOf(matriz.getMR()[i][j]));
+            }
+        }
+
+        List<String> list = new ArrayList<>();
+        int e = 0;
+        while (e < result.size() * 2) {
+            list.add(listText.get(e) + " + " + listText.get(e + 1));
+            e += 2;
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            String ie = list.get(i) + " = " + result.get(i);
+            list.set(i, ie);
+        }
+
 
         int i = 0;
         int j = 0;
         int r = Math.max(f1, f2);
-        for (Text text : listText) {
-            addGrid(text, i, j);
+        for (String t : list) {
+            addGrid(ObjectView.text("#000000",
+                    t,
+                    "18"), i, j);
             j++;
 
-            if (j == r + 2) {
+            if (j == r + 1) {
                 i += 1;
                 j = 0;
             }

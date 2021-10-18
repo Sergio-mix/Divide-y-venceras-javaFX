@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"));
-//        stage.getIcons().add(new Image(String.valueOf(getClass().getResource("/icons/file_1.png"))));
+        stage.getIcons().add(new Image(String.valueOf(getClass().getResource("/icons/m.png"))));
         stage.setTitle("Divide & Venceras");
         stage.setResizable(false);
         stage.setScene(scene);

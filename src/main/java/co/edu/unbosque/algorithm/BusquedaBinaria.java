@@ -18,24 +18,11 @@ public class BusquedaBinaria {
     }
 
     @FXML
-    public Integer localiza(int[] a, int busqueda, int izquierda, int derecha) {
+    public Integer localiza(int[] a, int busqueda, int izquierda, int derecha) throws NumberFormatException {
         try {
             int i;
 
-            if (busqueda == a[izquierda]) {
-                add(ObjectView.text(busqueda + " = " + a[izquierda]));
-                add(ObjectView.text("Elemento en la posición: " + izquierda));
-                return izquierda;
-            }
-
-            if (busqueda == a[derecha]) {
-                add(ObjectView.text(busqueda + " = " + a[derecha]));
-                add(ObjectView.text("Elemento en la posición: " + derecha));
-                return derecha;
-            }
-
             if (izquierda > derecha) {
-                add(ObjectView.text("No se encontro el elemento: " + busqueda));
                 return null;
             }
 
@@ -44,36 +31,36 @@ public class BusquedaBinaria {
             if (busqueda == a[i]) {
                 add(ObjectView.text(busqueda + " = " + a[i]));
 
-                add(ObjectView.hBox(ObjectView.hBox(a[i])));
-
-                add(ObjectView.text("Elemento en la posición: " + i));
+                HBox result = ObjectView.hBox();
+                result.getChildren().add(ObjectView.text(a[i]));
+                add(ObjectView.hBox(result));
 
                 return i;
             } else if (busqueda < a[i]) {
+                derecha = i - 1;
                 add(ObjectView.text(busqueda + " < " + a[i]));
 
                 HBox hBox = ObjectView.hBox();
 
-                for (int n = 1; n < i; n++) {
+                for (int n = izquierda; n <= derecha; n++)
                     hBox.getChildren().add(ObjectView.text(a[n]));
-                }
 
                 add(ObjectView.hBox(hBox));
 
-                return localiza(a, busqueda, 1, i - 1);
+                return localiza(a, busqueda, izquierda, derecha);
 
             } else if (busqueda > a[i]) {
+                izquierda = i + 1;
                 add(ObjectView.text(busqueda + " > " + a[i]));
 
                 HBox hBox = ObjectView.hBox();
 
-                for (int n = i; n < derecha; n++) {
+                for (int n = izquierda; n <= derecha; n++)
                     hBox.getChildren().add(ObjectView.text(a[n]));
-                }
 
                 add(ObjectView.hBox(hBox));
 
-                return localiza(a, busqueda, i + 1, derecha);
+                return localiza(a, busqueda, izquierda, derecha);
             }
 
         } catch (Exception e) {
@@ -85,6 +72,6 @@ public class BusquedaBinaria {
 
     @FXML
     private void add(Node n) {
-        vBox.getChildren().add( n);
+        vBox.getChildren().add(n);
     }
 }

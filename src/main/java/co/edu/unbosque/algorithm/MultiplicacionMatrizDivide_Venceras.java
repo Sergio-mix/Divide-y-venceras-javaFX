@@ -1,15 +1,35 @@
 package co.edu.unbosque.algorithm;
 
+import co.edu.unbosque.components.ObjectView;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import lombok.Getter;
+
 public class MultiplicacionMatrizDivide_Venceras {
 
-    public MultiplicacionMatrizDivide_Venceras(){
+    @FXML
+    private HBox hBox;
 
+    @FXML
+    @Getter
+    private VBox vBox;
+
+    @FXML
+    private GridPane gridPane;
+
+    public MultiplicacionMatrizDivide_Venceras(){
+        hBox = ObjectView.hBox_v2();
+        vBox = ObjectView.vBox(50);
+        gridPane = ObjectView.gridPane_v2();
     }
 
-    private int[][] multiply(int[][] A, int[][] B) {
+    public int[][] multiply(int[][] A, int[][] B) throws NumberFormatException {
         int n = A.length;
         int[][] R = new int[n][n];
-        /** base case **/
+
         if (n == 1)
             R[0][0] = A[0][0] * B[0][0];
         else {
@@ -33,16 +53,6 @@ public class MultiplicacionMatrizDivide_Venceras {
             split(B, B21, n / 2, 0);
             split(B, B22, n / 2, n / 2);
 
-            /**
-             M1 = (A11 + A22)(B11 + B22)
-             M2 = (A21 + A22) B11
-             M3 = A11 (B12 - B22)
-             M4 = A22 (B21 - B11)
-             M5 = (A11 + A12) B22
-             M6 = (A21 - A11) (B11 + B12)
-             M7 = (A12 - A22) (B21 + B22)
-             **/
-
             int[][] M1 = multiply(add(A11, A22), add(B11, B22));
             int[][] M2 = multiply(add(A21, A22), B11);
             int[][] M3 = multiply(A11, sub(B12, B22));
@@ -51,12 +61,6 @@ public class MultiplicacionMatrizDivide_Venceras {
             int[][] M6 = multiply(sub(A21, A11), add(B11, B12));
             int[][] M7 = multiply(sub(A12, A22), add(B21, B22));
 
-            /**
-             C11 = M1 + M4 - M5 + M7
-             C12 = M3 + M5
-             C21 = M2 + M4
-             C22 = M1 - M2 + M3 + M6
-             **/
             int[][] C11 = add(sub(add(M1, M4), M5), M7);
             int[][] C12 = add(M3, M5);
             int[][] C21 = add(M2, M4);
@@ -68,7 +72,7 @@ public class MultiplicacionMatrizDivide_Venceras {
             join(C21, R, n / 2, 0);
             join(C22, R, n / 2, n / 2);
         }
-        /** return result **/
+
         return R;
     }
 
@@ -112,5 +116,19 @@ public class MultiplicacionMatrizDivide_Venceras {
         for (int i1 = 0, i2 = iB; i1 < C.length; i1++, i2++)
             for (int j1 = 0, j2 = jB; j1 < C.length; j1++, j2++)
                 P[i2][j2] = C[i1][j1];
+    }
+
+    @FXML
+    private void addHBox(Node n) {
+        hBox.getChildren().add(n);
+    }
+
+    @FXML
+    private void addVBox(Node n) {
+        vBox.getChildren().add(n);
+    }
+
+    private void addGrid(Node n, int i, int j) {
+        gridPane.add(n, i, j);
     }
 }
