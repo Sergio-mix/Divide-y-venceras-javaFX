@@ -1,4 +1,4 @@
-package co.edu.unbosque.view;
+package co.edu.unbosque.components;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -6,11 +6,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-public class Components {
-    public Components() {
+public class ObjectView {
+    public ObjectView() {
 
     }
 
@@ -27,9 +28,21 @@ public class Components {
         return text;
     }
 
+    @FXML
+    public static Text text(String color, Object t, String size) {
+        Text text = new Text();
+        text.setText(String.valueOf(t));
+        text.setFill(Color.web(color));
+        text.setStyle(
+                " -fx-font-size: " + size + ";" +
+                        "-fx-font-family: Arial;"
+        );
+
+        return text;
+    }
 
     @FXML
-    public static HBox hbox() {
+    public static HBox hBox() {
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
         hBox.setSpacing(30);
@@ -47,7 +60,7 @@ public class Components {
     }
 
     @FXML
-    public static HBox hbox(Object ob) {
+    public static HBox hBox(Object ob) {
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
         hBox.getChildren().add((Node) ob);
@@ -57,6 +70,33 @@ public class Components {
         );
 
         return hBox;
+    }
+
+    @FXML
+    public static HBox hBox_v2() {
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setSpacing(100);
+
+        return hBox;
+    }
+
+    @FXML
+    public static VBox vBox() {
+        VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(25);
+
+        return vBox;
+    }
+
+    @FXML
+    public static VBox vBox(Integer spacing) {
+        VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(spacing);
+
+        return vBox;
     }
 
     public static GridPane gridPane() {
@@ -71,6 +111,19 @@ public class Components {
                         "-fx-stroke-dash-offset: 3;" +
                         "-fx-border-style: solid;" +
                         " -fx-border-width: 0 5 0 5; ");
+
+        return gridPane;
+    }
+
+    public static GridPane gridPane_v2() {
+        GridPane gridPane = new GridPane();
+        gridPane.setAlignment(Pos.CENTER);
+        gridPane.setHgap(50);
+        gridPane.setVgap(20);
+        gridPane.setPadding(new Insets(0, 20, 0, 20));
+        gridPane.setStyle(
+                " -fx-effect: dropshadow(gaussian, rgb(109,108,108), 2, 0.5, 0.0, 0.0);"
+        );
 
         return gridPane;
     }

@@ -31,7 +31,15 @@
                         <Insets left="100.0" top="8.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="buttonPane2" onMouseClicked="#pane2" text="multiplicación de matrices" textFill="#787575">
+                  <Label fx:id="buttonPane2" onMouseClicked="#pane2" text="Matrices Simple" textFill="#787575">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="8.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="buttonPane3" onMouseClicked="#pane3" text="Matrices divide y vencerás" textFill="#787575">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
@@ -118,7 +126,7 @@
                                           </TextField>
                                        </children>
                                     </HBox>
-                                    <JFXButton onAction="#multiplicacionMatriz" prefHeight="26.0" prefWidth="131.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #5af29c;" text="Ok" textFill="WHITE">
+                                    <JFXButton onAction="#multiplicacionMatrizSimple" prefHeight="26.0" prefWidth="131.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #5af29c;" text="Ok" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets left="50.0" top="23.0" />
                                        </HBox.margin>
@@ -210,6 +218,65 @@
                                        </children>
                                     </AnchorPane>
                                 </content>
+                              </ScrollPane>
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pane3" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <BorderPane prefHeight="591.0" prefWidth="1200.0">
+                           <top>
+                              <HBox prefHeight="58.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Matriz:">
+                                       <HBox.margin>
+                                          <Insets left="230.0" top="25.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <HBox prefHeight="58.0" prefWidth="234.0">
+                                       <children>
+                                          <TextField fx:id="txtFilaMatris3" promptText="Filas" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #CED4DA;">
+                                             <HBox.margin>
+                                                <Insets left="25.0" top="23.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField fx:id="txtColumnaMatriz3" promptText="Columnas" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #CED4DA;">
+                                             <HBox.margin>
+                                                <Insets left="25.0" top="23.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <JFXButton onAction="#multiplicacionMatrizDivide_Venceras" prefHeight="26.0" prefWidth="131.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #5af29c;" text="Ok" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets left="50.0" top="23.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                 </children>
+                                 <BorderPane.margin>
+                                    <Insets />
+                                 </BorderPane.margin>
+                              </HBox>
+                           </top>
+                           <center>
+                              <ScrollPane style="-fx-background-color: #E9ECEF;" BorderPane.alignment="CENTER">
+                                 <content>
+                                    <AnchorPane prefHeight="528.0" style="-fx-background-color: #E9ECEF;">
+                                       <children>
+                                          <HBox fx:id="hBoxPanel3" alignment="CENTER" layoutY="114.0" prefHeight="112.0" prefWidth="1200.0" spacing="100.0" style="-fx-background-color: #E9ECEF;" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
                               </ScrollPane>
                            </center>
                         </BorderPane>
