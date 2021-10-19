@@ -226,7 +226,7 @@ public class PrimaryController implements Initializable {
 
         int f = Integer.parseInt(txtFilaMatris3.getText());//Numero dde filas
         int c = Integer.parseInt(txtColumnaMatriz3.getText());//Numero de columnas
-        if (f >= c) {
+        if (f == c && f % 2 == 0) {
             HBox hBox = ObjectView.hBox_v2();//Contenedor
 
             GridPane gridPane1 = ObjectView.gridPane();//Sub contenedor

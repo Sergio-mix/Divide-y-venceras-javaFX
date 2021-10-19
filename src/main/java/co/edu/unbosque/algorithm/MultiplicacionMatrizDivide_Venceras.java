@@ -1,29 +1,10 @@
 package co.edu.unbosque.algorithm;
 
-import co.edu.unbosque.components.ObjectView;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import lombok.Getter;
-
 public class MultiplicacionMatrizDivide_Venceras {
 
-    @FXML
-    private HBox hBox;
-
-    @FXML
-    @Getter
-    private VBox vBox;
-
-    @FXML
-    private GridPane gridPane;
 
     public MultiplicacionMatrizDivide_Venceras(){
-        hBox = ObjectView.hBox_v2();
-        vBox = ObjectView.vBox(50);
-        gridPane = ObjectView.gridPane_v2();
+
     }
 
     public int[][] multiply(int[][] A, int[][] B) throws NumberFormatException {
@@ -116,19 +97,5 @@ public class MultiplicacionMatrizDivide_Venceras {
         for (int i1 = 0, i2 = iB; i1 < C.length; i1++, i2++)
             for (int j1 = 0, j2 = jB; j1 < C.length; j1++, j2++)
                 P[i2][j2] = C[i1][j1];
-    }
-
-    @FXML
-    private void addHBox(Node n) {
-        hBox.getChildren().add(n);
-    }
-
-    @FXML
-    private void addVBox(Node n) {
-        vBox.getChildren().add(n);
-    }
-
-    private void addGrid(Node n, int i, int j) {
-        gridPane.add(n, i, j);
     }
 }
